@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Spesial 🌸</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pesan.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="pesan-page">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-bg" id="heartsBg"></div>
+
+    <!-- Navbar Sederhana -->
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">Kembali</span>
+            </a>
+            <a href="index.html" class="btn-back">
+                <i class="fas fa-arrow-left"></i> Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Pesan Section -->
+    <section class="pesan-section">
+        <div class="pesan-container">
+
+            <!-- Envelope / Amplop -->
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope" id="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body">
+                        <div class="envelope-heart">🌸</div>
+                    </div>
+                </div>
+                <p class="envelope-hint">Klik untuk membuka pesan</p>
+            </div>
+
+            <!-- Kartu Pesan -->
+            <div class="pesan-card" id="pesanCard">
+                <div class="card-decoration">
+                    <span>🌸</span><span>🌸</span><span>🌸</span>
+                </div>
+
+                <span class="pesan-tag">Untuk Dina</span>
+
+                <h1 class="pesan-title">
+                    Hai, <span class="highlight" id="namaPenerima">Dina</span> 
+                </h1>
+
+                <div class="pesan-body">
+                    <p>
+                        Terima kasih sudah mencoba untuk berusaha daftar ke IWU, 
+                        walaupun hasilnya tidak sesuai yang di harapankan.
+                    </p>
+                    <p>
+                        kelak nanti semua usahamu dan lelahmu akan terbayarkan,
+                        dan sekarang Dina memilih untuk melanjutkan ke UT, aku dukung 
+                        kok Din. Karena kesuksesan tidak hanya dina kuliah di IWU aja dan 
+                        Dina juga memiliki hak untuk memilih jalan hidup selagi sesuai dengan 
+                        syariat islam.
+                    </p>
+                    <p class="pesan-quote">
+                        "SEMANGAT YA DINN KULIAHNYA, passion never failed." 
+                    </p>
+                </div>
+
+                <div class="pesan-signature">
+                    <p>Salam Hangat,</p>
+                    <h3> MICHAEL</h3>
+                </div>
+
+                <!-- Tombol Aksi -->
+                <div class="pesan-actions">
+                    <button class="btn btn-primary" id="btnKejutan">
+                        <i class="fas fa-gift"></i> Kejutan!
+                    </button>
+                    <button class="btn btn-secondary" id="btnBalas">
+                        <i class="fas fa-reply"></i> Balas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Form Balasan (muncul saat klik balas) -->
+            <div class="balas-card" id="balasCard">
+                <h3>🌸 Tulis Balasanmu</h3>
+                <p class="balas-subtitle">Aku tunggu kata-katamu...</p>
+                <form id="balasForm">
+                    <textarea id="balasText" rows="5" placeholder="Tulis pesanmu di sini..."></textarea>
+                    <div class="balas-actions">
+                        <button type="button" class="btn btn-secondary" id="btnTutupBalas">
+                            Tutup
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Kirim <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Popup Kejutan -->
+    <div class="popup" id="popupKejutan">
+        <div class="popup-content">
+            <div class="popup-emoji">🌸🌸🌸</div>
+            <h2>Kejutan untukmu!</h2>
+            <p id="popupMessage">Ingatlah bahwa setiap badai pasti berlalu dan kamu lebih kuat dari tantangan yang ada. Fokuslah pada bagaimana kamu bangkit setelah terjatuh, dan jadikan kegagalan hari ini sebagai pelajaran untuk mencoba lagi esok hari dengan cara yang lebih baik</p>
+            <button class="btn btn-primary" id="btnTutupPopup">
+                <i></i>🌸Terima Kasih
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Sederhana -->
+    <footer class="footer pesan-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2026 Dina Fitri Fadilah Dibuat spesial untukmu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="pesan.js"></script>
+</body>
+</html>

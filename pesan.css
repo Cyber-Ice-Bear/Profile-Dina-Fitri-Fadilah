@@ -1,0 +1,510 @@
+/* ============================================
+   PESAN PAGE - SPECIAL MESSAGE
+   ============================================ */
+
+/* ========== PAGE LAYOUT ========== */
+.pesan-page {
+    background: var(--gradient-soft);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.pesan-section {
+    padding: 140px 20px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.pesan-container {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* ========== FLOATING HEARTS BACKGROUND ========== */
+.hearts-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.heart-float {
+    position: absolute;
+    color: var(--pink);
+    opacity: 0.5;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% {
+        transform: translateY(-100px) scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ========== NAVBAR BACK BUTTON ========== */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--gradient);
+    color: var(--white);
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.btn-back:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ========== ENVELOPE ========== */
+.envelope-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+.envelope-wrapper.hide {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    position: absolute;
+}
+
+.envelope {
+    position: relative;
+    width: 220px;
+    height: 150px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    filter: drop-shadow(0 20px 40px rgba(255, 107, 166, 0.3));
+}
+
+.envelope:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.envelope-body {
+    position: absolute;
+    inset: 0;
+    background: var(--gradient);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.envelope-heart {
+    font-size: 40px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 80px solid var(--pink-medium);
+    z-index: 3;
+    border-radius: 12px 12px 0 0;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-hint {
+    color: var(--pink-accent);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    animation: bounceHint 2s infinite;
+}
+
+@keyframes bounceHint {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* ========== PESAN CARD ========== */
+.pesan-card {
+    background: var(--white);
+    padding: 50px 45px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    width: 100%;
+    border: 2px dashed var(--pink-light);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease, visibility 0.8s;
+}
+
+.pesan-card.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Card Decoration */
+.card-decoration {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    padding: 8px 20px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    gap: 12px;
+    font-size: 18px;
+}
+
+.card-decoration span {
+    animation: floatEmoji 3s ease-in-out infinite;
+}
+
+.card-decoration span:nth-child(2) { animation-delay: 0.3s; }
+.card-decoration span:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes floatEmoji {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Card Content */
+.pesan-tag {
+    display: inline-block;
+    padding: 6px 18px;
+    background: var(--pink-light);
+    color: var(--pink-accent);
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.pesan-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.pesan-body p {
+    color: var(--text-medium);
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 18px;
+}
+
+.pesan-quote {
+    background: var(--pink-light);
+    padding: 20px 25px;
+    border-radius: 15px;
+    border-left: 4px solid var(--pink-accent);
+    font-style: italic;
+    color: var(--text-dark) !important;
+    font-weight: 500;
+    margin: 25px 0 !important;
+}
+
+.pesan-signature {
+    text-align: right;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px dashed var(--pink-light);
+}
+
+.pesan-signature p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.pesan-signature h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--pink-accent);
+    font-weight: 700;
+}
+
+/* ========== ACTION BUTTONS ========== */
+.pesan-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.pesan-actions .btn {
+    flex: 1;
+    min-width: 150px;
+    justify-content: center;
+}
+
+/* ========== BALAS CARD ========== */
+.balas-card {
+    background: var(--white);
+    padding: 0 35px;
+    border-radius: 25px;
+    box-shadow: var(--shadow-md);
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    max-height: 0;
+    overflow: hidden;
+    transition: 
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        visibility 0.5s,
+        max-height 0.5s ease,
+        padding 0.5s ease;
+}
+
+.balas-card.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    max-height: 600px;
+    padding: 35px;
+}
+
+.balas-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.balas-subtitle {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.balas-card textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid var(--pink-light);
+    border-radius: 15px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text-dark);
+    background: var(--cream);
+    resize: none;
+    outline: none;
+    transition: var(--transition);
+}
+
+.balas-card textarea:focus {
+    border-color: var(--pink-accent);
+    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(255, 107, 166, 0.1);
+}
+
+.balas-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* ========== POPUP ========== */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(74, 44, 61, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0.4s;
+}
+
+.popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: var(--white);
+    padding: 45px 35px;
+    border-radius: 30px;
+    text-align: center;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
+    border: 3px solid var(--pink-light);
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.popup.show .popup-content {
+    transform: scale(1);
+}
+
+.popup-emoji {
+    font-size: 48px;
+    margin-bottom: 15px;
+    animation: bounce 1.5s infinite;
+}
+
+.popup-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.popup-content p {
+    color: var(--text-medium);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* ========== FOOTER ========== */
+.pesan-footer {
+    padding: 30px 0;
+    background: transparent;
+    color: var(--text-medium);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.pesan-footer .footer-bottom {
+    color: var(--text-medium);
+    justify-content: center;
+}
+
+.pesan-footer i {
+    color: var(--pink-accent);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .pesan-section {
+        padding: 120px 15px 60px;
+    }
+
+    .pesan-container {
+        gap: 25px;
+    }
+
+    /* Envelope */
+    .envelope {
+        width: 180px;
+        height: 125px;
+    }
+
+    .envelope-flap {
+        border-left-width: 90px;
+        border-right-width: 90px;
+        border-top-width: 65px;
+    }
+
+    /* Pesan Card */
+    .pesan-card {
+        padding: 40px 25px;
+        border-radius: 25px;
+    }
+
+    .pesan-title {
+        font-size: 28px;
+    }
+
+    .pesan-body p {
+        font-size: 14px;
+    }
+
+    /* Actions */
+    .pesan-actions {
+        flex-direction: column;
+    }
+
+    .pesan-actions .btn {
+        width: 100%;
+    }
+
+    /* Balas Card */
+    .balas-card.show {
+        padding: 25px;
+    }
+
+    .balas-actions {
+        flex-direction: column;
+    }
+
+    .balas-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Popup */
+    .popup-content {
+        padding: 35px 25px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .pesan-title {
+        font-size: 24px;
+    }
+
+    .pesan-quote {
+        padding: 15px 18px;
+        font-size: 13px !important;
+    }
+
+    .card-decoration {
+        font-size: 14px;
+        padding: 6px 15px;
+    }
+}
